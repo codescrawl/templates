@@ -4,22 +4,31 @@ x-stoplight:
 info:
   title: Template API
   version: '1.0'
+  summary: API containing template operations.
+  description: The Template API allows the management of templates withing RapidCX.
+  contact:
+    name: Colin Kirkham
+    url: 'https://www.precisely.com'
+    email: colin.kirkham@precisely.com
+  license:
+    name: Proprietary
+    url: 'https://www.precisely.com'
 servers:
   - url: 'http://localhost:3000'
+    description: Colin Kirkham
 paths:
   '/templates/{id}':
     get:
       summary: Get Template
-      tags: []
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: 'stoplight://resources/overrides/lAUbn6GNV9g'
+                $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
       operationId: get-template
-      description: Get a single template given its ID.
+      description: 'Get a single, existing template.'
     parameters:
       - schema:
           type: string
@@ -28,38 +37,63 @@ paths:
         in: path
         required: true
         description: The ID of the template to retrieve
+    put:
+      summary: ''
+      operationId: update-template
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+      description: Update an existing template.
+    delete:
+      summary: ''
+      operationId: delete-template
+      responses:
+        '200':
+          description: OK
+      description: Delete an existing template
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+  /templates:
+    get:
+      summary: Get Template
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+      operationId: get-all-templates
+      description: Get all templates.
+    parameters: []
     post:
       summary: ''
       operationId: create-template
       responses:
         '200':
           description: OK
-      description: Create a new template.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: 'stoplight://resources/overrides/lAUbn6GNV9g'
-  /templates:
-    get:
-      summary: Get Template
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: 'stoplight://resources/overrides/lAUbn6GNV9g'
-        '':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: 'stoplight://resources/overrides/lAUbn6GNV9g'
-      operationId: get-template
-      description: Get a single template given its ID.
-    parameters: []
+              $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+      description: Create a new template.
 components:
   schemas: {}
+tags:
+  - name: rapidcx
+    description: Related to the RapidCX project.
+  - name: template
+    description: Template related capabilities
