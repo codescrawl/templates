@@ -1,0 +1,65 @@
+openapi: 3.1.0
+x-stoplight:
+  id: xan49ielb77h4
+info:
+  title: Template API
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/templates/{id}':
+    get:
+      summary: Get Template
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'stoplight://resources/overrides/lAUbn6GNV9g'
+      operationId: get-template
+      description: Get a single template given its ID.
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: The ID of the template to retrieve
+    post:
+      summary: ''
+      operationId: create-template
+      responses:
+        '200':
+          description: OK
+      description: Create a new template.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: 'stoplight://resources/overrides/lAUbn6GNV9g'
+  /templates:
+    get:
+      summary: Get Template
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'stoplight://resources/overrides/lAUbn6GNV9g'
+        '':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'stoplight://resources/overrides/lAUbn6GNV9g'
+      operationId: get-template
+      description: Get a single template given its ID.
+    parameters: []
+components:
+  schemas: {}
