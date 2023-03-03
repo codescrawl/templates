@@ -29,6 +29,8 @@ paths:
                 $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
       operationId: get-template
       description: 'Get a single, existing template.'
+      parameters:
+        - $ref: '#/components/parameters/Tenant-ID'
     parameters:
       - schema:
           type: string
@@ -53,6 +55,8 @@ paths:
             schema:
               $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
       description: Update an existing template.
+      parameters:
+        - $ref: '#/components/parameters/Tenant-ID'
     delete:
       summary: ''
       operationId: delete-template
@@ -65,6 +69,8 @@ paths:
           application/json:
             schema:
               $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+      parameters:
+        - $ref: '#/components/parameters/Tenant-ID'
   /templates:
     get:
       summary: Get Template
@@ -77,6 +83,8 @@ paths:
                 $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
       operationId: get-all-templates
       description: Get all templates.
+      parameters:
+        - $ref: '#/components/parameters/Tenant-ID'
     parameters: []
     post:
       summary: ''
@@ -84,14 +92,28 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
       requestBody:
         content:
           application/json:
             schema:
               $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
       description: Create a new template.
+      parameters:
+        - $ref: '#/components/parameters/Tenant-ID'
 components:
   schemas: {}
+  parameters:
+    Tenant-ID:
+      name: Tenant-ID
+      in: header
+      required: false
+      schema:
+        type: string
+      description: The tenant for the request
 tags:
   - name: rapidcx
     description: Related to the RapidCX project.
