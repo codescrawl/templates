@@ -26,7 +26,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+                $ref: '#/components/schemas/Template'
       operationId: get-template
       description: 'Get a single, existing template.'
       parameters:
@@ -53,7 +53,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+              $ref: '#/components/schemas/Template'
       description: Update an existing template.
       parameters:
         - $ref: '#/components/parameters/Tenant-ID'
@@ -80,7 +80,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+                  x-stoplight:
+                    id: hmy64zb7yv6iy
       operationId: get-all-templates
       description: Get all templates.
       parameters:
@@ -100,12 +104,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+              $ref: '#/components/schemas/Template'
       description: Create a new template.
       parameters:
         - $ref: '#/components/parameters/Tenant-ID'
 components:
-  schemas: {}
+  schemas:
+    Template:
+      title: Template
+      x-stoplight:
+        id: j8cx7yix0y9y2
+      type: object
+      description: Standard model of a template.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          x-stoplight:
+            id: ta9nckeguj46s
+        content:
+          type: string
+          x-stoplight:
+            id: c7ka58rc34x9p
   parameters:
     Tenant-ID:
       name: Tenant-ID
