@@ -127,12 +127,7 @@ components:
     Tenant-ID:
       name: Tenant-ID
       in: header
-      required: false
+      required: true
       schema:
         type: string
       description: The tenant for the request
-tags:
-  - name: rapidcx
-    description: Related to the RapidCX project.
-  - name: template
-    description: Template related capabilities

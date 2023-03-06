@@ -1,0 +1,71 @@
+openapi: 3.0.3
+info:
+  title: Planets Demo API
+  version: 0.0.1
+  description: Simple Planet API for demonstration purposes. Modified from https://github.com/lornajane/flask-planets-and-webhooks
+servers:
+  - url: http://localhost:8080
+    description: Sample project running locally
+paths:
+  /planet:
+    get:
+      operationId: allPlanets
+      summary: List all planets
+      description: Returns a list of all the planets that are stored in the system.
+      tags:
+        - planet
+      responses:
+        '200':
+          description: Planets in a list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/planet"
+
+  /planet/{planetId}:
+    get:
+      operationId: onePlanet
+      summary: Fetch one planet by position
+      description: Get the data relating to one planet
+      tags:
+        - planet
+      parameters:
+        - name: planetId
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 4
+
+      responses:
+        '200':
+          description: Planets in a list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/planet"
+
+components:
+  schemas:
+    planet:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of planet
+          example: "Saturn"
+        position:
+          type: integer
+          description: Order in place from the sun
+          example: 6
+        moons:
+          type: integer
+          description: Number of moons, according to NASA
+          example: 62
+
+
+tags:
+  - name: planet
+    description: API containing solar system data
