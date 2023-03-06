@@ -1,10 +1,9 @@
-openapi: 3.1.0
+openapi: 3.0.0
 x-stoplight:
   id: xan49ielb77h4
 info:
   title: Template API
   version: '1.0'
-  summary: API containing template operations.
   description: The Template API allows the management of templates withing RapidCX.
   contact:
     name: Colin Kirkham
