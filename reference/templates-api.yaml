@@ -13,8 +13,8 @@ info:
     name: Proprietary
     url: 'https://www.precisely.com'
 servers:
-  - url: 'http://localhost:3000'
-    description: Colin Kirkham
+  - url: 'http://localhost:8080'
+    description: Development
 paths:
   '/templates/{id}':
     get:
