@@ -48,7 +48,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+                $ref: '#/components/schemas/Template'
       requestBody:
         content:
           application/json:
@@ -64,11 +64,6 @@ paths:
         '200':
           description: OK
       description: Delete an existing template
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
       parameters:
         - $ref: '#/components/parameters/Tenant-ID'
   /templates:
@@ -99,7 +94,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'stoplight://resources/overrides/8yvFcq6a0fo'
+                $ref: '#/components/schemas/Template'
       requestBody:
         content:
           application/json:
