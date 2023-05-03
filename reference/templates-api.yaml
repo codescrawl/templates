@@ -18,6 +18,8 @@ servers:
 paths:
   '/templates/{id}':
     get:
+      operationId: get-template
+      description: 'Get a single, existing template.'
       summary: Get Template
       responses:
         '200':
@@ -25,22 +27,41 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Template'
-      operationId: get-template
-      description: 'Get a single, existing template.'
+                $ref: 'stoplight://resources/overrides/0edCeXnhdHI'
+        '404':
+          description: Not Found
       parameters:
-        - $ref: '#/components/parameters/Tenant-ID'
+        - $ref: '#/components/parameters/TenantID'
+    delete:
+      operationId: delete-template
+      description: 'Delete a single, existing template.'
+      summary: Delete Template
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      parameters:
+        - $ref: '#/components/parameters/TenantID'
     parameters:
       - schema:
-          type: string
-          format: uuid
+          type: integer
+          format: int64
         name: id
         in: path
         required: true
         description: The ID of the template to retrieve
-    put:
+  /templates:
+    post:
       summary: ''
-      operationId: update-template
+      operationId: create-template
+      description: Create a new template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template'
       responses:
         '200':
           description: OK
@@ -48,26 +69,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Template'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Template'
-      description: Update an existing template.
       parameters:
-        - $ref: '#/components/parameters/Tenant-ID'
-    delete:
-      summary: ''
-      operationId: delete-template
-      responses:
-        '200':
-          description: OK
-      description: Delete an existing template
-      parameters:
-        - $ref: '#/components/parameters/Tenant-ID'
-  /templates:
+        - $ref: '#/components/parameters/TenantID'
     get:
-      summary: Get Template
+      summary: ''
+      operationId: get-all-templates
       responses:
         '200':
           description: OK
@@ -78,30 +84,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/Template'
                   x-stoplight:
-                    id: hmy64zb7yv6iy
-      operationId: get-all-templates
-      description: Get all templates.
+                    id: q71vcw5q3i4pv
       parameters:
-        - $ref: '#/components/parameters/Tenant-ID'
-    parameters: []
-    post:
-      summary: ''
-      operationId: create-template
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Template'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Template'
-      description: Create a new template.
-      parameters:
-        - $ref: '#/components/parameters/Tenant-ID'
+        - $ref: '#/components/parameters/TenantID'
+      description: Get all of the Templates in the system.
 components:
   schemas:
     Template:
@@ -109,12 +95,14 @@ components:
       x-stoplight:
         id: j8cx7yix0y9y2
       type: object
+      x-class-extra-annotation: '@jakarta.persistence.Entity'
       description: Standard model of a template.
       properties:
         id:
-          type: string
-          format: uuid
+          type: integer
+          format: int64
           readOnly: true
+          x-field-extra-annotation: '@jakarta.persistence.Id @jakarta.persistence.GeneratedValue(strategy=jakarta.persistence.GenerationType.AUTO)'
         name:
           type: string
           x-stoplight:
@@ -123,11 +111,14 @@ components:
           type: string
           x-stoplight:
             id: c7ka58rc34x9p
+      required:
+        - name
+        - content
   parameters:
-    Tenant-ID:
+    TenantID:
       name: Tenant-ID
       in: header
       required: true
       schema:
         type: string
-      description: The tenant for the request
+      description: The Tenant Id for the client.
