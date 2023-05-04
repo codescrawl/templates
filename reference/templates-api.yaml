@@ -27,7 +27,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'stoplight://resources/overrides/0edCeXnhdHI'
+                $ref: '#/components/schemas/Template'
         '404':
           description: Not Found
       parameters:
