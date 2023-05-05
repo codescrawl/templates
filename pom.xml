@@ -76,7 +76,7 @@
 						</goals>
 						<configuration>
 							<inputSpec>
-								https://raw.githubusercontent.com/codescrawl/templates/main/reference/templates-api.yaml
+								https://raw.githubusercontent.com/codescrawl/released/main/templates-api.yaml
 							</inputSpec>
 							<generatorName>spring</generatorName>
 							<apiPackage>com.precisely.engage.templates.api</apiPackage>
